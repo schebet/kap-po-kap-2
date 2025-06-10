@@ -26,7 +26,7 @@ interface SocialShareButtonProps {
 
 const SocialShareButton: React.FC<SocialShareButtonProps> = ({
   url = window.location.href,
-  title = "МОЈА БАШТА - Паметан систем за наводњавање",
+  title = "Моја паметна градина - систем за наводњавање",
   description = "Напредна контролна табла за климу и наводњавање са ESP32 технологијом. Аутоматско управљање баштом са реалним праћењем сензора.",
   iconsOnly = false
 }) => {
