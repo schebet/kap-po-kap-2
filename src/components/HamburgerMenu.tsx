@@ -99,7 +99,7 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ currentPage, onPageChange
                 </p>
                 <div className="flex items-center gap-2 text-blue-300/70 text-sm">
                   <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                  <span>ESP32 • Реално време • Аутоматизација</span>
+                  <span>кап по кап!</span>
                 </div>
               </div>
             </div>
