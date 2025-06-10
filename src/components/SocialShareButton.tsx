@@ -58,14 +58,6 @@ const SocialShareButton: React.FC<SocialShareButtonProps> = ({
       description: 'Твитуј на Twitter-у'
     },
     {
-      name: 'LinkedIn',
-      icon: <Linkedin className="w-5 h-5" />,
-      color: 'bg-blue-700 hover:bg-blue-800',
-      gradient: 'from-blue-700 to-blue-800',
-      shareUrl: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareData.url)}`,
-      description: 'Подели на LinkedIn-у'
-    },
-    {
       name: 'Telegram',
       icon: <Send className="w-5 h-5" />,
       color: 'bg-blue-500 hover:bg-blue-600',
