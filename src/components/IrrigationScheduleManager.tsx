@@ -89,7 +89,7 @@ const IrrigationScheduleManager: React.FC<IrrigationScheduleManagerProps> = ({
                 value={newSchedule.name}
                 onChange={(e) => setNewSchedule(prev => ({ ...prev, name: e.target.value }))}
                 className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white placeholder-white/50"
-                placeholder="нпр. Јутарње заливање"
+                placeholder="нпр. S prvi petli"
               />
             </div>
 
