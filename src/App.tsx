@@ -31,6 +31,7 @@ import HamburgerMenu from './components/HamburgerMenu';
 import SoilMoistureControl from './components/SoilMoistureControl';
 import IrrigationScheduleManager from './components/IrrigationScheduleManager';
 import SocialShareButton from './components/SocialShareButton';
+import { useLocalStorage } from './hooks/useLocalStorage';
 import { 
   IrrigationSchedule, 
   SoilMoistureSettings, 
@@ -676,9 +677,19 @@ const BackToTopButton: React.FC = () => {
 
 function App() {
   const [currentPage, setCurrentPage] = useState<CurrentPage>('dashboard');
-  const [operatingMode, setOperatingMode] = useState<OperatingMode>('manual');
-  const [irrigationSchedules, setIrrigationSchedules] = useState<IrrigationSchedule[]>(DEFAULT_IRRIGATION_SCHEDULES);
-  const [soilMoistureSettings, setSoilMoistureSettings] = useState<SoilMoistureSettings>(DEFAULT_SOIL_MOISTURE_SETTINGS);
+  const [operatingMode, setOperatingMode] = useLocalStorage<OperatingMode>('operatingMode', 'manual');
+  
+  // Користи useLocalStorage за трајно чување распореда заливања
+  const [irrigationSchedules, setIrrigationSchedules] = useLocalStorage<IrrigationSchedule[]>(
+    'irrigationSchedules', 
+    DEFAULT_IRRIGATION_SCHEDULES
+  );
+  
+  // Користи useLocalStorage за трајно чување подешавања влажности земљишта
+  const [soilMoistureSettings, setSoilMoistureSettings] = useLocalStorage<SoilMoistureSettings>(
+    'soilMoistureSettings', 
+    DEFAULT_SOIL_MOISTURE_SETTINGS
+  );
   
   const [sensorData, setSensorData] = useState<SensorData>({
     temperature: 22.5,
