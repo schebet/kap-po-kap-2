@@ -70,16 +70,16 @@ const ModeSwitch: React.FC<{
       <div className="absolute inset-0 bg-gradient-to-r from-orange-500/20 via-blue-500/20 to-green-500/20 rounded-3xl blur-xl"></div>
       
       {/* Main container */}
-      <div className="relative bg-white/5 backdrop-blur-xl rounded-3xl p-6 border border-white/10 shadow-2xl">
-        <div className="text-center mb-6">
-          <h2 className="text-xl font-bold bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent mb-2">
+      <div className="relative bg-white/5 backdrop-blur-xl rounded-3xl p-4 sm:p-6 border border-white/10 shadow-2xl">
+        <div className="text-center mb-4 sm:mb-6">
+          <h2 className="text-lg sm:text-xl font-bold bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent mb-2">
             Режим Рада Система
           </h2>
-          <p className="text-white/60 text-sm">Изаберите начин управљања вашим системом</p>
+          <p className="text-white/60 text-xs sm:text-sm break-words">Изаберите начин управљања вашим системом</p>
         </div>
         
         <div className="flex items-center justify-center">
-          <div className="relative bg-white/10 backdrop-blur-md rounded-2xl p-2 border border-white/20">
+          <div className="relative bg-white/10 backdrop-blur-md rounded-2xl p-2 border border-white/20 w-full max-w-lg">
             {/* Animated background slider */}
             <div 
               className={`absolute top-2 bottom-2 w-1/2 rounded-xl transition-all duration-500 ease-out ${
@@ -93,7 +93,7 @@ const ModeSwitch: React.FC<{
               {/* Manual Mode Button */}
               <button
                 onClick={() => onModeChange('manual')}
-                className={`group relative flex items-center gap-3 px-8 py-4 rounded-xl font-semibold transition-all duration-500 transform ${
+                className={`group relative flex items-center gap-2 sm:gap-3 px-3 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold transition-all duration-500 transform flex-1 justify-center ${
                   mode === 'manual'
                     ? 'text-white scale-105 z-10'
                     : 'text-white/70 hover:text-white hover:scale-105'
@@ -107,17 +107,17 @@ const ModeSwitch: React.FC<{
                     <div className="absolute inset-0 bg-white/30 rounded-full blur-md"></div>
                   )}
                   <div className="relative">
-                    <Wrench className="w-6 h-6" />
+                    <Wrench className="w-4 sm:w-6 h-4 sm:h-6" />
                   </div>
                 </div>
                 
                 <div className="text-left">
-                  <div className={`transition-all duration-300 ${
-                    mode === 'manual' ? 'font-bold text-lg' : 'font-semibold group-hover:font-bold'
+                  <div className={`transition-all duration-300 text-sm sm:text-base ${
+                    mode === 'manual' ? 'font-bold' : 'font-semibold group-hover:font-bold'
                   }`}>
                     Ручни Режим
                   </div>
-                  <div className={`text-xs transition-all duration-300 ${
+                  <div className={`text-xs transition-all duration-300 hidden sm:block ${
                     mode === 'manual' ? 'text-white/90' : 'text-white/50 group-hover:text-white/70'
                   }`}>
                     Потпуна контрола
@@ -136,7 +136,7 @@ const ModeSwitch: React.FC<{
               {/* Automatic Mode Button */}
               <button
                 onClick={() => onModeChange('automatic')}
-                className={`group relative flex items-center gap-3 px-8 py-4 rounded-xl font-semibold transition-all duration-500 transform ${
+                className={`group relative flex items-center gap-2 sm:gap-3 px-3 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold transition-all duration-500 transform flex-1 justify-center ${
                   mode === 'automatic'
                     ? 'text-white scale-105 z-10'
                     : 'text-white/70 hover:text-white hover:scale-105'
@@ -150,17 +150,17 @@ const ModeSwitch: React.FC<{
                     <div className="absolute inset-0 bg-white/30 rounded-full blur-md"></div>
                   )}
                   <div className="relative">
-                    <Bot className="w-6 h-6" />
+                    <Bot className="w-4 sm:w-6 h-4 sm:h-6" />
                   </div>
                 </div>
                 
                 <div className="text-left">
-                  <div className={`transition-all duration-300 ${
-                    mode === 'automatic' ? 'font-bold text-lg' : 'font-semibold group-hover:font-bold'
+                  <div className={`transition-all duration-300 text-sm sm:text-base ${
+                    mode === 'automatic' ? 'font-bold' : 'font-semibold group-hover:font-bold'
                   }`}>
                     Аутоматски Режим
                   </div>
-                  <div className={`text-xs transition-all duration-300 ${
+                  <div className={`text-xs transition-all duration-300 hidden sm:block ${
                     mode === 'automatic' ? 'text-white/90' : 'text-white/50 group-hover:text-white/70'
                   }`}>
                     Паметно управљање
@@ -180,21 +180,21 @@ const ModeSwitch: React.FC<{
         </div>
         
         {/* Mode Description */}
-        <div className="mt-6 text-center">
-          <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm transition-all duration-500 ${
+        <div className="mt-4 sm:mt-6 text-center">
+          <div className={`inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm transition-all duration-500 ${
             mode === 'manual' 
               ? 'bg-gradient-to-r from-orange-500/20 to-red-500/20 border border-orange-500/30 text-orange-200'
               : 'bg-gradient-to-r from-blue-500/20 to-cyan-500/20 border border-blue-500/30 text-blue-200'
           }`}>
             {mode === 'manual' ? (
               <>
-                <Settings className="w-4 h-4" />
-                <span>Ручно управљање свим функцијама система</span>
+                <Settings className="w-3 sm:w-4 h-3 sm:h-4 flex-shrink-0" />
+                <span className="break-words">Ручно управљање свим функцијама система</span>
               </>
             ) : (
               <>
-                <Target className="w-4 h-4" />
-                <span>Аутоматска оптимизација на основу сензора</span>
+                <Target className="w-3 sm:w-4 h-3 sm:h-4 flex-shrink-0" />
+                <span className="break-words">Аутоматска оптимизација на основу сензора</span>
               </>
             )}
           </div>
@@ -229,18 +229,18 @@ const SensorCard: React.FC<{
   };
 
   return (
-    <div className={`bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20 ${getStatusColor()}`}>
-      <div className="flex items-center gap-3 mb-2">
-        <div className="text-white">{icon}</div>
-        <span className="text-white font-medium text-sm">{title}</span>
+    <div className={`bg-white/10 backdrop-blur-md rounded-xl p-3 sm:p-4 border border-white/20 ${getStatusColor()}`}>
+      <div className="flex items-center gap-2 sm:gap-3 mb-2">
+        <div className="text-white flex-shrink-0">{icon}</div>
+        <span className="text-white font-medium text-xs sm:text-sm break-words">{title}</span>
       </div>
       <div className="text-center">
-        <div className={`text-2xl font-bold ${getValueColor()}`}>
+        <div className={`text-lg sm:text-2xl font-bold ${getValueColor()}`}>
           {typeof value === 'number' ? value.toFixed(1) : value}
         </div>
-        <div className="text-white/70 text-sm">{unit}</div>
+        <div className="text-white/70 text-xs sm:text-sm">{unit}</div>
         {description && (
-          <div className="text-white/60 text-xs mt-1">{description}</div>
+          <div className="text-white/60 text-xs mt-1 break-words">{description}</div>
         )}
       </div>
     </div>
@@ -265,32 +265,32 @@ const TemperatureControl: React.FC<{
   const tempStatus = getTemperatureStatus();
 
   return (
-    <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+    <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-white/20">
       <div className="flex items-center gap-2 mb-4">
         {icon}
-        <span className="text-white font-semibold">{title}</span>
+        <span className="text-white font-semibold text-sm sm:text-base break-words">{title}</span>
       </div>
 
       <div className="space-y-4">
         <div className="grid grid-cols-2 gap-4">
           <div className="text-center">
-            <div className="text-sm text-white/70 mb-1">Тренутна</div>
-            <div className="text-2xl font-bold text-white">{currentTemp.toFixed(1)}°C</div>
+            <div className="text-xs sm:text-sm text-white/70 mb-1">Тренутна</div>
+            <div className="text-xl sm:text-2xl font-bold text-white">{currentTemp.toFixed(1)}°C</div>
           </div>
           <div className="text-center">
-            <div className="text-sm text-white/70 mb-1">Циљана</div>
-            <div className="text-2xl font-bold text-blue-300">{targetTemp.toFixed(1)}°C</div>
+            <div className="text-xs sm:text-sm text-white/70 mb-1">Циљана</div>
+            <div className="text-xl sm:text-2xl font-bold text-blue-300">{targetTemp.toFixed(1)}°C</div>
           </div>
         </div>
 
         <div className="text-center">
-          <span className={`text-sm font-medium ${tempStatus.color}`}>
+          <span className={`text-xs sm:text-sm font-medium ${tempStatus.color}`}>
             {tempStatus.status}
           </span>
         </div>
 
         <div className="space-y-2">
-          <div className="flex justify-between text-sm text-white/70">
+          <div className="flex justify-between text-xs sm:text-sm text-white/70">
             <span>Циљана температура</span>
             <span>{targetTemp}°C</span>
           </div>
@@ -334,23 +334,23 @@ const FanSpeedControl: React.FC<{
   const fanStatus = getFanStatus();
 
   return (
-    <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+    <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-white/20">
       <div className="flex items-center gap-2 mb-4">
-        <Fan className="w-5 h-5 text-white" />
-        <span className="text-white font-semibold">Контрола Вентилатора</span>
+        <Fan className="w-4 sm:w-5 h-4 sm:h-5 text-white flex-shrink-0" />
+        <span className="text-white font-semibold text-sm sm:text-base break-words">Контрола Вентилатора</span>
       </div>
 
       <div className="space-y-4">
         <div className="text-center">
-          <div className="text-sm text-white/70 mb-1">Брзина</div>
-          <div className="text-3xl font-bold text-white">{fanSpeed}%</div>
-          <span className={`text-sm font-medium ${fanStatus.color}`}>
+          <div className="text-xs sm:text-sm text-white/70 mb-1">Брзина</div>
+          <div className="text-2xl sm:text-3xl font-bold text-white">{fanSpeed}%</div>
+          <span className={`text-xs sm:text-sm font-medium ${fanStatus.color}`}>
             {fanStatus.status}
           </span>
         </div>
 
         <div className="space-y-2">
-          <div className="flex justify-between text-sm text-white/70">
+          <div className="flex justify-between text-xs sm:text-sm text-white/70">
             <span>Брзина вентилатора</span>
             <span>{fanSpeed}%</span>
           </div>
@@ -378,9 +378,9 @@ const FanSpeedControl: React.FC<{
         <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-3">
           <div className="text-xs text-green-200">
             <div className="font-medium mb-1">Аутоматска регулација:</div>
-            <div>• Повећава се при високој температури</div>
-            <div>• Смањује се при ниској температури</div>
-            <div>• Искључује се при јаком ветру</div>
+            <div className="break-words">• Повећава се при високој температури</div>
+            <div className="break-words">• Смањује се при ниској температури</div>
+            <div className="break-words">• Искључује се при јаком ветру</div>
           </div>
         </div>
       </div>
@@ -396,11 +396,11 @@ const ValveControl: React.FC<{
 }> = ({ valve, active, onToggle, disabled = false }) => {
   
   return (
-    <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
+    <div className="bg-white/10 backdrop-blur-md rounded-xl p-3 sm:p-4 border border-white/20">
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
-          <Droplets className="w-4 h-4 text-blue-400" />
-          <span className="text-white font-medium">{valve}</span>
+          <Droplets className="w-4 h-4 text-blue-400 flex-shrink-0" />
+          <span className="text-white font-medium text-sm break-words">{valve}</span>
         </div>
         <div className={`w-3 h-3 rounded-full ${active ? 'bg-green-400' : 'bg-gray-500'}`} />
       </div>
@@ -408,7 +408,7 @@ const ValveControl: React.FC<{
       <button
         onClick={onToggle}
         disabled={disabled}
-        className={`w-full py-2 px-4 rounded-lg font-medium transition-all duration-200 ${
+        className={`w-full py-2 px-3 sm:px-4 rounded-lg font-medium transition-all duration-200 text-xs sm:text-sm ${
           disabled
             ? 'bg-gray-500/30 text-gray-400 cursor-not-allowed'
             : active 
@@ -424,57 +424,57 @@ const ValveControl: React.FC<{
 
 const SystemStatus: React.FC<{ data: SensorData }> = ({ data }) => {
   return (
-    <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+    <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-white/20">
       <div className="flex items-center gap-2 mb-4">
-        <Settings className="w-5 h-5 text-white" />
-        <span className="text-white font-semibold">Статус Система</span>
+        <Settings className="w-4 sm:w-5 h-4 sm:h-5 text-white flex-shrink-0" />
+        <span className="text-white font-semibold text-sm sm:text-base">Статус Система</span>
       </div>
       
       <div className="space-y-3">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            {data.wifiConnected ? <Wifi className="w-4 h-4 text-green-400" /> : <WifiOff className="w-4 h-4 text-red-400" />}
-            <span className="text-white/80">WiFi Веза</span>
+          <div className="flex items-center gap-2 min-w-0 flex-1">
+            {data.wifiConnected ? <Wifi className="w-4 h-4 text-green-400 flex-shrink-0" /> : <WifiOff className="w-4 h-4 text-red-400 flex-shrink-0" />}
+            <span className="text-white/80 text-sm break-words">WiFi Веза</span>
           </div>
-          <span className={`text-sm ${data.wifiConnected ? 'text-green-400' : 'text-red-400'}`}>
+          <span className={`text-xs sm:text-sm ${data.wifiConnected ? 'text-green-400' : 'text-red-400'}`}>
             {data.wifiConnected ? 'Повезано' : 'Није повезано'}
           </span>
         </div>
         
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Zap className={`w-4 h-4 ${data.mqttConnected ? 'text-green-400' : 'text-red-400'}`} />
-            <span className="text-white/80">MQTT Брокер</span>
+          <div className="flex items-center gap-2 min-w-0 flex-1">
+            <Zap className={`w-4 h-4 ${data.mqttConnected ? 'text-green-400' : 'text-red-400'} flex-shrink-0`} />
+            <span className="text-white/80 text-sm break-words">MQTT Брокер</span>
           </div>
-          <span className={`text-sm ${data.mqttConnected ? 'text-green-400' : 'text-red-400'}`}>
+          <span className={`text-xs sm:text-sm ${data.mqttConnected ? 'text-green-400' : 'text-red-400'}`}>
             {data.mqttConnected ? 'Повезано' : 'Није повезано'}
           </span>
         </div>
         
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Power className={`w-4 h-4 ${data.systemActive ? 'text-green-400' : 'text-gray-400'}`} />
-            <span className="text-white/80">Статус Система</span>
+          <div className="flex items-center gap-2 min-w-0 flex-1">
+            <Power className={`w-4 h-4 ${data.systemActive ? 'text-green-400' : 'text-gray-400'} flex-shrink-0`} />
+            <span className="text-white/80 text-sm break-words">Статус Система</span>
           </div>
-          <span className={`text-sm ${data.systemActive ? 'text-green-400' : 'text-gray-400'}`}>
+          <span className={`text-xs sm:text-sm ${data.systemActive ? 'text-green-400' : 'text-gray-400'}`}>
             {data.systemActive ? 'Активан' : 'У приправности'}
           </span>
         </div>
 
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Target className={`w-4 h-4 ${data.autoMode ? 'text-blue-400' : 'text-gray-400'}`} />
-            <span className="text-white/80">Режим Рада</span>
+          <div className="flex items-center gap-2 min-w-0 flex-1">
+            <Target className={`w-4 h-4 ${data.autoMode ? 'text-blue-400' : 'text-gray-400'} flex-shrink-0`} />
+            <span className="text-white/80 text-sm break-words">Режим Рада</span>
           </div>
-          <span className={`text-sm ${data.autoMode ? 'text-blue-400' : 'text-gray-400'}`}>
+          <span className={`text-xs sm:text-sm ${data.autoMode ? 'text-blue-400' : 'text-gray-400'}`}>
             {data.autoMode ? 'Аутоматски' : 'Ручни'}
           </span>
         </div>
         
         <div className="pt-2 border-t border-white/20">
           <div className="flex items-center gap-2 text-white/60 text-xs">
-            <Clock className="w-3 h-3" />
-            <span>Последње ажурирање: {new Date().toLocaleTimeString()}</span>
+            <Clock className="w-3 h-3 flex-shrink-0" />
+            <span className="break-words">Последње ажурирање: {new Date().toLocaleTimeString()}</span>
           </div>
         </div>
       </div>
@@ -513,7 +513,7 @@ const AutomaticControls: React.FC<{
           targetTemp={data.targetTemperature}
           onTargetChange={onTargetChange}
           title="Контрола Температуре Пластеника"
-          icon={<Target className="w-5 h-5 text-white" />}
+          icon={<Target className="w-4 sm:w-5 h-4 sm:h-5 text-white flex-shrink-0" />}
         />
         
         <TemperatureControl
@@ -521,7 +521,7 @@ const AutomaticControls: React.FC<{
           targetTemp={data.targetIncubatorTemperature}
           onTargetChange={onIncubatorTargetChange}
           title="Контрола Температуре Инкубатора"
-          icon={<Egg className="w-5 h-5 text-white" />}
+          icon={<Egg className="w-4 sm:w-5 h-4 sm:h-5 text-white flex-shrink-0" />}
         />
         
         <FanSpeedControl
@@ -545,42 +545,42 @@ const AutomaticControls: React.FC<{
 
       <SystemStatus data={data} />
       
-      <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+      <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-white/20">
         <div className="flex items-center gap-2 mb-4">
-          <Zap className="w-5 h-5 text-white" />
-          <span className="text-white font-semibold">Аутоматске Функције</span>
+          <Zap className="w-4 sm:w-5 h-4 sm:h-5 text-white flex-shrink-0" />
+          <span className="text-white font-semibold text-sm sm:text-base">Аутоматске Функције</span>
         </div>
         <div className="space-y-4">
-          <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-4">
-            <div className="text-sm text-blue-200">
+          <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-3 sm:p-4">
+            <div className="text-xs sm:text-sm text-blue-200">
               <div className="font-medium mb-2">Активне аутоматске контроле:</div>
               <div className="space-y-1 text-xs">
-                <div>• Температурна регулација пластеника: {data.targetTemperature}°C ± 1°C</div>
-                <div>• Температурна регулација инкубатора: {data.targetIncubatorTemperature}°C ± 1°C</div>
-                <div>• Вентилатор: {data.fanSpeed}% брзине</div>
-                <div>• Влажност земљишта: {soilMoistureSettings.targetMoisture}% (аутоматско: {soilMoistureSettings.autoIrrigation ? 'укључено' : 'искључено'})</div>
-                <div>• Ветар: Заштита при јачини {'>'} 15 km/h</div>
-                <div>• CO₂: Оптимизација за раст биљака</div>
-                <div>• Распоред: {schedules.filter(s => s.active).length} активних распореда</div>
+                <div className="break-words">• Температурна регулација пластеника: {data.targetTemperature}°C ± 1°C</div>
+                <div className="break-words">• Температурна регулација инкубатора: {data.targetIncubatorTemperature}°C ± 1°C</div>
+                <div className="break-words">• Вентилатор: {data.fanSpeed}% брзине</div>
+                <div className="break-words">• Влажност земљишта: {soilMoistureSettings.targetMoisture}% (аутоматско: {soilMoistureSettings.autoIrrigation ? 'укључено' : 'искључено'})</div>
+                <div className="break-words">• Ветар: Заштита при јачини {'>'} 15 km/h</div>
+                <div className="break-words">• CO₂: Оптимизација за раст биљака</div>
+                <div className="break-words">• Распоред: {schedules.filter(s => s.active).length} активних распореда</div>
               </div>
             </div>
           </div>
           
-          <div className="grid grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
             <div className="text-center p-3 bg-green-500/10 rounded-lg border border-green-500/20">
-              <div className="text-green-300 font-medium">Вентили</div>
+              <div className="text-green-300 font-medium text-xs sm:text-sm">Вентили</div>
               <div className="text-xs text-green-200">Аутоматски</div>
             </div>
             <div className="text-center p-3 bg-blue-500/10 rounded-lg border border-blue-500/20">
-              <div className="text-blue-300 font-medium">Наводњавање</div>
+              <div className="text-blue-300 font-medium text-xs sm:text-sm break-words">Наводњавање</div>
               <div className="text-xs text-blue-200">По распореду</div>
             </div>
             <div className="text-center p-3 bg-purple-500/10 rounded-lg border border-purple-500/20">
-              <div className="text-purple-300 font-medium">Вентилатор</div>
+              <div className="text-purple-300 font-medium text-xs sm:text-sm">Вентилатор</div>
               <div className="text-xs text-purple-200">{data.fanSpeed}%</div>
             </div>
             <div className="text-center p-3 bg-orange-500/10 rounded-lg border border-orange-500/20">
-              <div className="text-orange-300 font-medium">Инкубатор</div>
+              <div className="text-orange-300 font-medium text-xs sm:text-sm">Инкубатор</div>
               <div className="text-xs text-orange-200">{data.targetIncubatorTemperature}°C</div>
             </div>
           </div>
@@ -596,10 +596,10 @@ const ManualControls: React.FC<{
 }> = ({ data, onValveToggle }) => {
   return (
     <div className="space-y-6">
-      <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+      <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-white/20">
         <div className="flex items-center gap-2 mb-4">
-          <Power className="w-5 h-5 text-white" />
-          <span className="text-white font-semibold">Ручна Контрола Вентила</span>
+          <Power className="w-4 sm:w-5 h-4 sm:h-5 text-white flex-shrink-0" />
+          <span className="text-white font-semibold text-sm sm:text-base">Ручна Контрола Вентила</span>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <ValveControl 
@@ -615,23 +615,23 @@ const ManualControls: React.FC<{
         </div>
       </div>
 
-      <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+      <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-white/20">
         <div className="flex items-center gap-2 mb-4">
-          <AlertTriangle className="w-5 h-5 text-yellow-400" />
-          <span className="text-white font-semibold">Ручни Режим - Упозорења</span>
+          <AlertTriangle className="w-4 sm:w-5 h-4 sm:h-5 text-yellow-400 flex-shrink-0" />
+          <span className="text-white font-semibold text-sm sm:text-base">Ручни Режим - Упозорења</span>
         </div>
-        <div className="space-y-3 text-sm text-white/80">
+        <div className="space-y-3 text-xs sm:text-sm text-white/80">
           <div className="flex items-start gap-2">
             <div className="w-2 h-2 bg-yellow-400 rounded-full mt-1.5 flex-shrink-0"></div>
-            <span>У ручном режиму сте одговорни за контролу свих система</span>
+            <span className="break-words">У ручном режиму сте одговорни за контролу свих система</span>
           </div>
           <div className="flex items-start gap-2">
             <div className="w-2 h-2 bg-yellow-400 rounded-full mt-1.5 flex-shrink-0"></div>
-            <span>Пратите сензоре и прилагођавајте вентиле према потреби</span>
+            <span className="break-words">Пратите сензоре и прилагођавајте вентиле према потреби</span>
           </div>
           <div className="flex items-start gap-2">
             <div className="w-2 h-2 bg-red-400 rounded-full mt-1.5 flex-shrink-0"></div>
-            <span>Висока брзина ветра ({'>'}{data.windSpeed.toFixed(1)} km/h) може утицати на систем</span>
+            <span className="break-words">Висока брзина ветра ({'>'}{data.windSpeed.toFixed(1)} km/h) може утицати на систем</span>
           </div>
         </div>
       </div>
@@ -869,73 +869,73 @@ function App() {
         return <InstructionsPage />;
       default:
         return (
-          <>
+          <div className="overflow-x-hidden">
             {/* Mode Switch */}
             <ModeSwitch mode={operatingMode} onModeChange={setOperatingMode} />
 
             {/* Sensor Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4 mb-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3 sm:gap-4 mb-6 sm:mb-8">
               <SensorCard
                 title="Спољашња Температура"
                 value={sensorData.externalTemperature}
                 unit="°C"
-                icon={<ThermometerSun className="w-5 h-5" />}
+                icon={<ThermometerSun className="w-4 sm:w-5 h-4 sm:h-5" />}
                 status="good"
               />
               <SensorCard
                 title="Температура у Пластенику"
                 value={sensorData.temperature}
                 unit="°C"
-                icon={<Thermometer className="w-5 h-5" />}
+                icon={<Thermometer className="w-4 sm:w-5 h-4 sm:h-5" />}
                 status="good"
               />
               <SensorCard
                 title="Температура у Инкубатору Расада"
                 value={sensorData.incubatorTemperature}
                 unit="°C"
-                icon={<Egg className="w-5 h-5" />}
+                icon={<Egg className="w-4 sm:w-5 h-4 sm:h-5" />}
                 status={getSensorStatus('incubator', sensorData.incubatorTemperature)}
               />
               <SensorCard
                 title="Притисак Воде"
                 value={sensorData.pressure}
                 unit="бара"
-                icon={<Gauge className="w-5 h-5" />}
+                icon={<Gauge className="w-4 sm:w-5 h-4 sm:h-5" />}
                 status={sensorData.pressure < 0.5 ? 'critical' : 'good'}
               />
               <SensorCard
                 title="Влажност Земљишта"
                 value={sensorData.soilMoisture}
                 unit="%"
-                icon={<Droplets className="w-5 h-5" />}
+                icon={<Droplets className="w-4 sm:w-5 h-4 sm:h-5" />}
                 status={getSensorStatus('soil', sensorData.soilMoisture)}
               />
               <SensorCard
                 title="Брзина Ветра"
                 value={sensorData.windSpeed}
                 unit="km/h"
-                icon={<Wind className="w-5 h-5" />}
+                icon={<Wind className="w-4 sm:w-5 h-4 sm:h-5" />}
                 status={getSensorStatus('wind', sensorData.windSpeed)}
               />
               <SensorCard
                 title="Јачина Светлости"
                 value={sensorData.lightIntensity}
                 unit="%"
-                icon={<Sun className="w-5 h-5" />}
+                icon={<Sun className="w-4 sm:w-5 h-4 sm:h-5" />}
                 status={getSensorStatus('light', sensorData.lightIntensity)}
               />
               <SensorCard
                 title="CO₂ Засићење"
                 value={sensorData.co2Saturation}
                 unit="ppm"
-                icon={<Leaf className="w-5 h-5" />}
+                icon={<Leaf className="w-4 sm:w-5 h-4 sm:h-5" />}
                 status={getSensorStatus('co2', sensorData.co2Saturation)}
               />
             </div>
 
             {/* Mode-specific Controls */}
             <div className="mb-6">
-              {operatingMode === 'automatic' ? (
+              {operatingMode === 'automatic' ?  (
                 <AutomaticControls 
                   data={sensorData} 
                   onTargetChange={handleTargetTemperatureChange}
@@ -957,13 +957,13 @@ function App() {
             </div>
 
             {/* Footer with Social Share */}
-            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 mb-6">
+            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-white/20 mb-6">
               <div className="flex flex-col md:flex-row items-center justify-between gap-4">
                 <div className="text-center md:text-left">
-                  <p className="text-white/70 text-sm mb-2">
+                  <p className="text-white/70 text-xs sm:text-sm mb-2 break-words">
                     МОЈА БАШТА в3.2 | WebSocket: Порт 81 | MQTT: localhost:1883
                   </p>
-                  <p className="text-white/50 text-xs">
+                  <p className="text-white/50 text-xs break-words">
                     Подели овај систем са пријатељима који се баве баштованством!
                   </p>
                 </div>
@@ -972,13 +972,13 @@ function App() {
                 </div>
               </div>
             </div>
-          </>
+          </div>
         );
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-cyan-800 p-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-cyan-800 p-4 overflow-x-hidden">
       <div className="max-w-7xl mx-auto">
         {/* Header with Hamburger Menu */}
         <HamburgerMenu currentPage={currentPage} onPageChange={setCurrentPage} />

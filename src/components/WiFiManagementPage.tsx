@@ -210,44 +210,44 @@ const WiFiManagementPage: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 overflow-x-hidden">
       {/* Connection Status */}
-      <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
-        <div className="flex items-center justify-between mb-4">
+      <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-white/20">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
           <div className="flex items-center gap-2">
-            <Router className="w-5 h-5 text-white" />
+            <Router className="w-5 h-5 text-white flex-shrink-0" />
             <span className="text-white font-semibold">Статус Везе</span>
           </div>
           <div className={`flex items-center gap-2 ${getConnectionStatusColor()}`}>
-            {connectionStatus === 'connected' ? <Wifi className="w-5 h-5" /> : 
-             connectionStatus === 'connecting' ? <RefreshCw className="w-5 h-5 animate-spin" /> :
-             <WifiOff className="w-5 h-5" />}
-            <span className="font-medium">{getConnectionStatusText()}</span>
+            {connectionStatus === 'connected' ? <Wifi className="w-5 h-5 flex-shrink-0" /> : 
+             connectionStatus === 'connecting' ? <RefreshCw className="w-5 h-5 animate-spin flex-shrink-0" /> :
+             <WifiOff className="w-5 h-5 flex-shrink-0" />}
+            <span className="font-medium text-sm sm:text-base">{getConnectionStatusText()}</span>
           </div>
         </div>
 
         {connectionStatus === 'connected' && (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-3 sm:p-4">
               <div className="flex items-center gap-2 mb-2">
-                <Globe className="w-4 h-4 text-green-400" />
-                <span className="text-green-300 font-medium">Интернет</span>
+                <Globe className="w-4 h-4 text-green-400 flex-shrink-0" />
+                <span className="text-green-300 font-medium text-sm">Интернет</span>
               </div>
               <div className="text-sm text-green-200">Активан</div>
             </div>
             
-            <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-4">
+            <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-3 sm:p-4">
               <div className="flex items-center gap-2 mb-2">
-                <Signal className="w-4 h-4 text-blue-400" />
-                <span className="text-blue-300 font-medium">Јачина Сигнала</span>
+                <Signal className="w-4 h-4 text-blue-400 flex-shrink-0" />
+                <span className="text-blue-300 font-medium text-sm">Јачина Сигнала</span>
               </div>
               <div className="text-sm text-blue-200">95% (Одлично)</div>
             </div>
             
-            <div className="bg-purple-500/10 border border-purple-500/20 rounded-lg p-4">
+            <div className="bg-purple-500/10 border border-purple-500/20 rounded-lg p-3 sm:p-4 sm:col-span-2 lg:col-span-1">
               <div className="flex items-center gap-2 mb-2">
-                <Shield className="w-4 h-4 text-purple-400" />
-                <span className="text-purple-300 font-medium">Безбедност</span>
+                <Shield className="w-4 h-4 text-purple-400 flex-shrink-0" />
+                <span className="text-purple-300 font-medium text-sm">Безбедност</span>
               </div>
               <div className="text-sm text-purple-200">WPA2 Заштићено</div>
             </div>
@@ -256,30 +256,31 @@ const WiFiManagementPage: React.FC = () => {
 
         {connectionStatus === 'failed' && (
           <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-4">
-            <div className="flex items-center gap-2 mb-2">
-              <AlertTriangle className="w-4 h-4 text-red-400" />
-              <span className="text-red-300 font-medium">Грешка при повезивању</span>
+            <div className="flex items-start gap-2 mb-2">
+              <AlertTriangle className="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5" />
+              <span className="text-red-300 font-medium text-sm">Грешка при повезивању</span>
             </div>
             <div className="text-sm text-red-200">Проверите лозинку и покушајте поново</div>
           </div>
         )}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
         {/* Available Networks */}
-        <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
-          <div className="flex items-center justify-between mb-6">
+        <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-white/20">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
             <div className="flex items-center gap-2">
-              <Scan className="w-5 h-5 text-white" />
-              <span className="text-white font-semibold">Доступне Мреже</span>
+              <Scan className="w-5 h-5 text-white flex-shrink-0" />
+              <span className="text-white font-semibold text-sm sm:text-base">Доступне Мреже</span>
             </div>
             <button
               onClick={handleScan}
               disabled={isScanning}
-              className="flex items-center gap-2 bg-blue-500 hover:bg-blue-600 disabled:bg-blue-500/50 text-white px-4 py-2 rounded-lg transition-colors"
+              className="flex items-center gap-2 bg-blue-500 hover:bg-blue-600 disabled:bg-blue-500/50 text-white px-3 sm:px-4 py-2 rounded-lg transition-colors text-sm whitespace-nowrap"
             >
-              <RefreshCw className={`w-4 h-4 ${isScanning ? 'animate-spin' : ''}`} />
-              {isScanning ? 'Скенирање...' : 'Скенирај'}
+              <RefreshCw className={`w-4 h-4 flex-shrink-0 ${isScanning ? 'animate-spin' : ''}`} />
+              <span className="hidden sm:inline">{isScanning ? 'Скенирање...' : 'Скенирај'}</span>
+              <span className="sm:hidden">{isScanning ? '...' : 'Скен'}</span>
             </button>
           </div>
 
@@ -287,27 +288,27 @@ const WiFiManagementPage: React.FC = () => {
             {availableNetworks.map((network, index) => (
               <div
                 key={index}
-                className={`bg-white/5 border border-white/10 rounded-xl p-4 hover:bg-white/10 transition-colors ${
+                className={`bg-white/5 border border-white/10 rounded-xl p-3 sm:p-4 hover:bg-white/10 transition-colors ${
                   network.connected ? 'border-green-500/50 bg-green-500/10' : ''
                 }`}
               >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="flex items-center gap-2">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <div className="flex items-center gap-3 min-w-0 flex-1">
+                    <div className="flex items-center gap-2 flex-shrink-0">
                       {getSignalIcon(network.signal)}
                       {getSecurityIcon(network.security)}
                     </div>
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-white font-medium">{network.ssid}</span>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="text-white font-medium text-sm break-all">{network.ssid}</span>
                         {network.connected && (
-                          <CheckCircle className="w-4 h-4 text-green-400" />
+                          <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0" />
                         )}
                         {network.saved && (
-                          <div className="w-2 h-2 bg-blue-400 rounded-full" />
+                          <div className="w-2 h-2 bg-blue-400 rounded-full flex-shrink-0" />
                         )}
                       </div>
-                      <div className="text-sm text-white/60">
+                      <div className="text-xs sm:text-sm text-white/60 break-words">
                         {network.security.toUpperCase()} • {network.signal}%
                       </div>
                     </div>
@@ -316,7 +317,7 @@ const WiFiManagementPage: React.FC = () => {
                   {!network.connected && (
                     <button
                       onClick={() => handleConnect(network.ssid)}
-                      className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg text-sm transition-colors"
+                      className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1.5 rounded-lg text-xs sm:text-sm transition-colors whitespace-nowrap flex-shrink-0"
                     >
                       Повежи се
                     </button>
@@ -328,28 +329,28 @@ const WiFiManagementPage: React.FC = () => {
         </div>
 
         {/* Saved Networks */}
-        <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+        <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-white/20">
           <div className="flex items-center gap-2 mb-6">
-            <Settings className="w-5 h-5 text-white" />
-            <span className="text-white font-semibold">Сачуване Мреже</span>
+            <Settings className="w-5 h-5 text-white flex-shrink-0" />
+            <span className="text-white font-semibold text-sm sm:text-base">Сачуване Мреже</span>
           </div>
 
           <div className="space-y-3 max-h-96 overflow-y-auto">
             {savedNetworks.map((network) => (
               <div
                 key={network.id}
-                className="bg-white/5 border border-white/10 rounded-xl p-4"
+                className="bg-white/5 border border-white/10 rounded-xl p-3 sm:p-4"
               >
-                <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center gap-2">
-                    <span className="text-white font-medium">{network.ssid}</span>
+                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-2">
+                  <div className="flex items-center gap-2 min-w-0 flex-1">
+                    <span className="text-white font-medium text-sm break-all">{network.ssid}</span>
                     {network.autoConnect && (
-                      <div className="bg-green-500/20 text-green-300 px-2 py-1 rounded text-xs">
+                      <div className="bg-green-500/20 text-green-300 px-2 py-1 rounded text-xs whitespace-nowrap flex-shrink-0">
                         Аутоматски
                       </div>
                     )}
                   </div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 flex-shrink-0">
                     <button
                       onClick={() => {/* Edit functionality */}}
                       className="p-1 text-blue-400 hover:bg-blue-500/20 rounded transition-colors"
@@ -364,7 +365,7 @@ const WiFiManagementPage: React.FC = () => {
                     </button>
                   </div>
                 </div>
-                <div className="text-sm text-white/60">
+                <div className="text-xs sm:text-sm text-white/60 break-words">
                   Последње повезивање: {network.lastConnected}
                 </div>
               </div>
@@ -374,22 +375,22 @@ const WiFiManagementPage: React.FC = () => {
       </div>
 
       {/* WiFi Settings */}
-      <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+      <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-white/20">
         <div className="flex items-center gap-2 mb-6">
-          <Settings className="w-5 h-5 text-white" />
-          <span className="text-white font-semibold">WiFi Подешавања</span>
+          <Settings className="w-5 h-5 text-white flex-shrink-0" />
+          <span className="text-white font-semibold text-sm sm:text-base">WiFi Подешавања</span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <div className="text-white font-medium">Аутоматско повезивање</div>
-                <div className="text-sm text-white/60">Аутоматски се повежи на познате мреже</div>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div className="min-w-0 flex-1">
+                <div className="text-white font-medium text-sm">Аутоматско повезивање</div>
+                <div className="text-xs sm:text-sm text-white/60 break-words">Аутоматски се повежи на познате мреже</div>
               </div>
               <button
                 onClick={() => setWifiSettings(prev => ({ ...prev, autoConnect: !prev.autoConnect }))}
-                className={`w-12 h-6 rounded-full transition-colors ${
+                className={`w-12 h-6 rounded-full transition-colors flex-shrink-0 ${
                   wifiSettings.autoConnect ? 'bg-green-500' : 'bg-gray-500'
                 }`}
               >
@@ -399,14 +400,14 @@ const WiFiManagementPage: React.FC = () => {
               </button>
             </div>
 
-            <div className="flex items-center justify-between">
-              <div>
-                <div className="text-white font-medium">Прикажи скривене мреже</div>
-                <div className="text-sm text-white/60">Укључи скривене SSID мреже у скен</div>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div className="min-w-0 flex-1">
+                <div className="text-white font-medium text-sm">Прикажи скривене мреже</div>
+                <div className="text-xs sm:text-sm text-white/60 break-words">Укључи скривене SSID мреже у скен</div>
               </div>
               <button
                 onClick={() => setWifiSettings(prev => ({ ...prev, showHiddenNetworks: !prev.showHiddenNetworks }))}
-                className={`w-12 h-6 rounded-full transition-colors ${
+                className={`w-12 h-6 rounded-full transition-colors flex-shrink-0 ${
                   wifiSettings.showHiddenNetworks ? 'bg-green-500' : 'bg-gray-500'
                 }`}
               >
@@ -418,14 +419,14 @@ const WiFiManagementPage: React.FC = () => {
           </div>
 
           <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <div className="text-white font-medium">Штедња енергије</div>
-                <div className="text-sm text-white/60">Смањи потрошњу батерије</div>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div className="min-w-0 flex-1">
+                <div className="text-white font-medium text-sm">Штедња енергије</div>
+                <div className="text-xs sm:text-sm text-white/60 break-words">Смањи потрошњу батерије</div>
               </div>
               <button
                 onClick={() => setWifiSettings(prev => ({ ...prev, powerSaving: !prev.powerSaving }))}
-                className={`w-12 h-6 rounded-full transition-colors ${
+                className={`w-12 h-6 rounded-full transition-colors flex-shrink-0 ${
                   wifiSettings.powerSaving ? 'bg-green-500' : 'bg-gray-500'
                 }`}
               >
@@ -436,11 +437,11 @@ const WiFiManagementPage: React.FC = () => {
             </div>
 
             <div>
-              <div className="text-white font-medium mb-2">Фреквенција</div>
+              <div className="text-white font-medium mb-2 text-sm">Фреквенција</div>
               <select
                 value={wifiSettings.frequency}
                 onChange={(e) => setWifiSettings(prev => ({ ...prev, frequency: e.target.value as any }))}
-                className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white"
+                className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white text-sm"
               >
                 <option value="auto">Аутоматски</option>
                 <option value="2.4GHz">2.4 GHz</option>
@@ -454,9 +455,9 @@ const WiFiManagementPage: React.FC = () => {
       {/* Connection Modal */}
       {showConnectModal && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 w-full max-w-md">
+          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-white/20 w-full max-w-md">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-white font-semibold">Повежи се на мрежу</h3>
+              <h3 className="text-white font-semibold text-sm sm:text-base">Повежи се на мрежу</h3>
               <button
                 onClick={() => setShowConnectModal(false)}
                 className="text-white/60 hover:text-white"
@@ -468,7 +469,7 @@ const WiFiManagementPage: React.FC = () => {
             <div className="space-y-4">
               <div>
                 <label className="block text-white/70 text-sm mb-2">Мрежа</label>
-                <div className="bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-white">
+                <div className="bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-white text-sm break-all">
                   {selectedNetwork}
                 </div>
               </div>
@@ -480,7 +481,7 @@ const WiFiManagementPage: React.FC = () => {
                     type={showPassword ? 'text' : 'password'}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 pr-10 text-white placeholder-white/50"
+                    className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 pr-10 text-white placeholder-white/50 text-sm"
                     placeholder="Унесите лозинку"
                   />
                   <button
@@ -492,16 +493,16 @@ const WiFiManagementPage: React.FC = () => {
                 </div>
               </div>
 
-              <div className="flex gap-3">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <button
                   onClick={() => connectToNetwork(selectedNetwork!, password)}
-                  className="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg font-medium transition-colors"
+                  className="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg font-medium transition-colors text-sm"
                 >
                   Повежи се
                 </button>
                 <button
                   onClick={() => setShowConnectModal(false)}
-                  className="flex-1 bg-gray-500 hover:bg-gray-600 text-white py-2 rounded-lg font-medium transition-colors"
+                  className="flex-1 bg-gray-500 hover:bg-gray-600 text-white py-2 rounded-lg font-medium transition-colors text-sm"
                 >
                   Откажи
                 </button>

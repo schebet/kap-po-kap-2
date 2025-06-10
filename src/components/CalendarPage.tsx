@@ -214,23 +214,23 @@ const CalendarPage: React.FC = () => {
           <img 
             src={plant.image} 
             alt={plant.name}
-            className="w-16 h-16 rounded-lg object-cover"
+            className="w-16 h-16 rounded-lg object-cover flex-shrink-0"
           />
         )}
-        <div className="flex-1">
-          <div className="flex items-center gap-2 mb-2">
-            <h3 className="text-white font-semibold">{plant.name}</h3>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2 mb-2 flex-wrap">
+            <h3 className="text-white font-semibold text-sm break-words">{plant.name}</h3>
             {getStatusIcon(plant.status)}
           </div>
-          <div className="text-sm text-white/70 space-y-1">
-            <div>{plant.variety}</div>
+          <div className="text-xs sm:text-sm text-white/70 space-y-1">
+            <div className="break-words">{plant.variety}</div>
             <div className="flex items-center gap-1">
-              <MapPin className="w-3 h-3" />
-              {plant.location}
+              <MapPin className="w-3 h-3 flex-shrink-0" />
+              <span className="break-words">{plant.location}</span>
             </div>
             <div className="flex items-center gap-1">
-              <Calendar className="w-3 h-3" />
-              Посађено: {new Date(plant.plantedDate).toLocaleDateString('sr-RS')}
+              <Calendar className="w-3 h-3 flex-shrink-0" />
+              <span className="break-words">Посађено: {new Date(plant.plantedDate).toLocaleDateString('sr-RS')}</span>
             </div>
           </div>
           <div className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs mt-2 ${
@@ -240,13 +240,13 @@ const CalendarPage: React.FC = () => {
             'bg-orange-500/20 text-orange-300'
           }`}>
             {getStatusIcon(plant.status)}
-            {getStatusText(plant.status)}
+            <span className="whitespace-nowrap">{getStatusText(plant.status)}</span>
           </div>
         </div>
       </div>
       {plant.notes && (
         <div className="mt-3 p-2 bg-white/5 rounded-lg">
-          <p className="text-xs text-white/60">{plant.notes}</p>
+          <p className="text-xs text-white/60 break-words">{plant.notes}</p>
         </div>
       )}
     </div>
@@ -260,13 +260,13 @@ const CalendarPage: React.FC = () => {
         activity.completed ? 'opacity-60' : ''
       }`}>
         <div className="flex items-center justify-between mb-2">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 min-w-0 flex-1">
             {getActivityIcon(activity.type)}
-            <span className="text-white font-medium">{getActivityText(activity.type)}</span>
+            <span className="text-white font-medium text-sm break-words">{getActivityText(activity.type)}</span>
           </div>
           <button
             onClick={() => toggleActivityComplete(activity.id)}
-            className={`p-1 rounded-full transition-colors ${
+            className={`p-1 rounded-full transition-colors flex-shrink-0 ${
               activity.completed 
                 ? 'bg-green-500/20 text-green-400' 
                 : 'bg-white/10 text-white/60 hover:bg-white/20'
@@ -276,20 +276,20 @@ const CalendarPage: React.FC = () => {
           </button>
         </div>
         
-        <div className="text-sm text-white/70 space-y-1">
+        <div className="text-xs sm:text-sm text-white/70 space-y-1">
           <div className="flex items-center gap-1">
-            <Leaf className="w-3 h-3" />
-            {plant?.name} ({plant?.variety})
+            <Leaf className="w-3 h-3 flex-shrink-0" />
+            <span className="break-words">{plant?.name} ({plant?.variety})</span>
           </div>
           <div className="flex items-center gap-1">
-            <Clock className="w-3 h-3" />
-            {new Date(activity.date).toLocaleDateString('sr-RS')}
+            <Clock className="w-3 h-3 flex-shrink-0" />
+            <span className="break-words">{new Date(activity.date).toLocaleDateString('sr-RS')}</span>
           </div>
         </div>
         
         {activity.notes && (
           <div className="mt-2 p-2 bg-white/5 rounded-lg">
-            <p className="text-xs text-white/60">{activity.notes}</p>
+            <p className="text-xs text-white/60 break-words">{activity.notes}</p>
           </div>
         )}
       </div>
@@ -297,68 +297,69 @@ const CalendarPage: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 overflow-x-hidden">
       {/* Quick Stats */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="bg-white/10 backdrop-blur-md rounded-xl p-3 sm:p-4 border border-white/20">
           <div className="flex items-center gap-2 mb-2">
-            <Sprout className="w-5 h-5 text-green-400" />
-            <span className="text-white/70 text-sm">Укупно биљака</span>
+            <Sprout className="w-4 sm:w-5 h-4 sm:h-5 text-green-400 flex-shrink-0" />
+            <span className="text-white/70 text-xs sm:text-sm break-words">Укупно биљака</span>
           </div>
-          <div className="text-2xl font-bold text-white">{plants.length}</div>
+          <div className="text-xl sm:text-2xl font-bold text-white">{plants.length}</div>
         </div>
         
-        <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
+        <div className="bg-white/10 backdrop-blur-md rounded-xl p-3 sm:p-4 border border-white/20">
           <div className="flex items-center gap-2 mb-2">
-            <CheckCircle className="w-5 h-5 text-green-400" />
-            <span className="text-white/70 text-sm">Здраве биљке</span>
+            <CheckCircle className="w-4 sm:w-5 h-4 sm:h-5 text-green-400 flex-shrink-0" />
+            <span className="text-white/70 text-xs sm:text-sm break-words">Здраве биљке</span>
           </div>
-          <div className="text-2xl font-bold text-green-300">
+          <div className="text-xl sm:text-2xl font-bold text-green-300">
             {plants.filter(p => p.status === 'healthy').length}
           </div>
         </div>
         
-        <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
+        <div className="bg-white/10 backdrop-blur-md rounded-xl p-3 sm:p-4 border border-white/20">
           <div className="flex items-center gap-2 mb-2">
-            <AlertTriangle className="w-5 h-5 text-yellow-400" />
-            <span className="text-white/70 text-sm">Потребна пажња</span>
+            <AlertTriangle className="w-4 sm:w-5 h-4 sm:h-5 text-yellow-400 flex-shrink-0" />
+            <span className="text-white/70 text-xs sm:text-sm break-words">Потребна пажња</span>
           </div>
-          <div className="text-2xl font-bold text-yellow-300">
+          <div className="text-xl sm:text-2xl font-bold text-yellow-300">
             {plants.filter(p => p.status === 'needs-attention').length}
           </div>
         </div>
         
-        <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
+        <div className="bg-white/10 backdrop-blur-md rounded-xl p-3 sm:p-4 border border-white/20 col-span-2 lg:col-span-1">
           <div className="flex items-center gap-2 mb-2">
-            <Clock className="w-5 h-5 text-blue-400" />
-            <span className="text-white/70 text-sm">Предстојеће активности</span>
+            <Clock className="w-4 sm:w-5 h-4 sm:h-5 text-blue-400 flex-shrink-0" />
+            <span className="text-white/70 text-xs sm:text-sm break-words">Предстојеће активности</span>
           </div>
-          <div className="text-2xl font-bold text-blue-300">
+          <div className="text-xl sm:text-2xl font-bold text-blue-300">
             {activities.filter(a => !a.completed && a.date >= new Date().toISOString().split('T')[0]).length}
           </div>
         </div>
       </div>
 
       {/* Main Content Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
         {/* Plants Section */}
-        <div className="lg:col-span-2 space-y-6">
-          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
-            <div className="flex items-center justify-between mb-6">
+        <div className="xl:col-span-2 space-y-6">
+          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-white/20">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
               <div className="flex items-center gap-2">
-                <Leaf className="w-5 h-5 text-white" />
-                <span className="text-white font-semibold">Моје Биљке</span>
+                <Leaf className="w-5 h-5 text-white flex-shrink-0" />
+                <span className="text-white font-semibold text-sm sm:text-base">Моје Биљке</span>
               </div>
               <button
                 onClick={() => setShowAddPlant(true)}
-                className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg transition-colors"
+                className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-3 sm:px-4 py-2 rounded-lg transition-colors text-sm whitespace-nowrap"
               >
-                <Plus className="w-4 h-4" />
-                Додај Биљку
+                <Plus className="w-4 h-4 flex-shrink-0" />
+                <span className="hidden sm:inline">Додај Биљку</span>
+                <span className="sm:hidden">Додај</span>
               </button>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               {plants.map(plant => (
                 <PlantCard key={plant.id} plant={plant} />
               ))}
@@ -366,17 +367,18 @@ const CalendarPage: React.FC = () => {
           </div>
 
           {/* Today's Activities */}
-          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-white/20">
             <div className="flex items-center gap-2 mb-6">
-              <Calendar className="w-5 h-5 text-white" />
-              <span className="text-white font-semibold">Данашње Активности</span>
+              <Calendar className="w-5 h-5 text-white flex-shrink-0" />
+              <span className="text-white font-semibold text-sm sm:text-base">Данашње Активности</span>
             </div>
             
             <div className="space-y-3">
               {getActivitiesForDate(new Date().toISOString().split('T')[0]).length === 0 ? (
                 <div className="text-center text-white/60 py-8">
                   <Calendar className="w-12 h-12 mx-auto mb-3 opacity-50" />
-                  <p>Нема планираних активности за данас</p>
+                  <p className="text-sm break-words">Нема планираних активности за данас</p>
+                  <p className="text-xs break-words">Додајте нови распоред да бисте аутоматизовали заливање</p>
                 </div>
               ) : (
                 getActivitiesForDate(new Date().toISOString().split('T')[0]).map(activity => (
@@ -390,18 +392,18 @@ const CalendarPage: React.FC = () => {
         {/* Sidebar */}
         <div className="space-y-6">
           {/* Upcoming Activities */}
-          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
-            <div className="flex items-center justify-between mb-6">
+          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-white/20">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
               <div className="flex items-center gap-2">
-                <Clock className="w-5 h-5 text-white" />
-                <span className="text-white font-semibold">Предстојеће Активности</span>
+                <Clock className="w-5 h-5 text-white flex-shrink-0" />
+                <span className="text-white font-semibold text-sm sm:text-base break-words">Предстојеће Активности</span>
               </div>
               <button
                 onClick={() => setShowAddActivity(true)}
-                className="flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg transition-colors text-sm"
+                className="flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg transition-colors text-sm whitespace-nowrap"
               >
-                <Plus className="w-3 h-3" />
-                Додај
+                <Plus className="w-3 h-3 flex-shrink-0" />
+                <span>Додај</span>
               </button>
             </div>
             
@@ -413,57 +415,57 @@ const CalendarPage: React.FC = () => {
           </div>
 
           {/* Quick Tips */}
-          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-white/20">
             <div className="flex items-center gap-2 mb-4">
-              <BookOpen className="w-5 h-5 text-white" />
-              <span className="text-white font-semibold">Савети за Башту</span>
+              <BookOpen className="w-5 h-5 text-white flex-shrink-0" />
+              <span className="text-white font-semibold text-sm sm:text-base">Савети за Башту</span>
             </div>
             
-            <div className="space-y-3 text-sm text-white/80">
+            <div className="space-y-3 text-xs sm:text-sm text-white/80">
               <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-3">
                 <div className="font-medium text-blue-300 mb-1">Заливање</div>
-                <div>Заливајте рано ујутру или увече да избегнете испаравање</div>
+                <div className="break-words">Заливајте рано ујутру или увече да избегнете испаравање</div>
               </div>
               
               <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-3">
                 <div className="font-medium text-green-300 mb-1">Ђубрење</div>
-                <div>Користите органска ђубрива за здравији раст биљака</div>
+                <div className="break-words">Користите органска ђубрива за здравији раст биљака</div>
               </div>
               
               <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-3">
                 <div className="font-medium text-yellow-300 mb-1">Заштита</div>
-                <div>Редовно проверавајте биљке за знакове болести или штетника</div>
+                <div className="break-words">Редовно проверавајте биљке за знакове болести или штетника</div>
               </div>
             </div>
           </div>
 
           {/* Weather Integration Placeholder */}
-          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-white/20">
             <div className="flex items-center gap-2 mb-4">
-              <Sun className="w-5 h-5 text-white" />
-              <span className="text-white font-semibold">Временска Прогноза</span>
+              <Sun className="w-5 h-5 text-white flex-shrink-0" />
+              <span className="text-white font-semibold text-sm sm:text-base break-words">Временска Прогноза</span>
             </div>
             
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-white/70">Данас</span>
+                <span className="text-white/70 text-sm">Данас</span>
                 <div className="flex items-center gap-2">
-                  <Sun className="w-4 h-4 text-yellow-400" />
-                  <span className="text-white">22°C</span>
+                  <Sun className="w-4 h-4 text-yellow-400 flex-shrink-0" />
+                  <span className="text-white text-sm">22°C</span>
                 </div>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-white/70">Сутра</span>
+                <span className="text-white/70 text-sm">Сутра</span>
                 <div className="flex items-center gap-2">
-                  <Sun className="w-4 h-4 text-yellow-400" />
-                  <span className="text-white">24°C</span>
+                  <Sun className="w-4 h-4 text-yellow-400 flex-shrink-0" />
+                  <span className="text-white text-sm">24°C</span>
                 </div>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-white/70">Прекосутра</span>
+                <span className="text-white/70 text-sm">Прекосутра</span>
                 <div className="flex items-center gap-2">
-                  <Droplets className="w-4 h-4 text-blue-400" />
-                  <span className="text-white">19°C</span>
+                  <Droplets className="w-4 h-4 text-blue-400 flex-shrink-0" />
+                  <span className="text-white text-sm">19°C</span>
                 </div>
               </div>
             </div>
@@ -471,7 +473,7 @@ const CalendarPage: React.FC = () => {
             <div className="mt-4 p-3 bg-blue-500/10 border border-blue-500/20 rounded-lg">
               <div className="text-xs text-blue-200">
                 <div className="font-medium mb-1">Препорука:</div>
-                <div>Очекује се киша прекосутра - прилагодите заливање</div>
+                <div className="break-words">Очекује се киша прекосутра - прилагодите заливање</div>
               </div>
             </div>
           </div>

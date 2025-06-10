@@ -396,7 +396,7 @@ const InstructionsPage: React.FC = () => {
     switch (content.type) {
       case 'text':
         return (
-          <p className="text-white/80 leading-relaxed">
+          <p className="text-white/80 leading-relaxed break-words">
             {content.content as string}
           </p>
         );
@@ -405,13 +405,13 @@ const InstructionsPage: React.FC = () => {
         return (
           <div>
             {content.title && (
-              <h4 className="text-white font-medium mb-2">{content.title}</h4>
+              <h4 className="text-white font-medium mb-2 break-words">{content.title}</h4>
             )}
             <ul className="space-y-2">
               {(content.content as string[]).map((item, index) => (
                 <li key={index} className="flex items-start gap-2 text-white/80">
                   <div className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-2 flex-shrink-0" />
-                  <span>{item}</span>
+                  <span className="break-words">{item}</span>
                 </li>
               ))}
             </ul>
@@ -423,11 +423,11 @@ const InstructionsPage: React.FC = () => {
           <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-4">
             <div className="flex items-start gap-2">
               <AlertTriangle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
-              <div>
+              <div className="min-w-0 flex-1">
                 {content.title && (
-                  <h4 className="text-red-300 font-medium mb-1">{content.title}</h4>
+                  <h4 className="text-red-300 font-medium mb-1 break-words">{content.title}</h4>
                 )}
-                <p className="text-red-200 text-sm">{content.content as string}</p>
+                <p className="text-red-200 text-sm break-words">{content.content as string}</p>
               </div>
             </div>
           </div>
@@ -438,11 +438,11 @@ const InstructionsPage: React.FC = () => {
           <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-4">
             <div className="flex items-start gap-2">
               <Info className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
-              <div>
+              <div className="min-w-0 flex-1">
                 {content.title && (
-                  <h4 className="text-blue-300 font-medium mb-1">{content.title}</h4>
+                  <h4 className="text-blue-300 font-medium mb-1 break-words">{content.title}</h4>
                 )}
-                <p className="text-blue-200 text-sm">{content.content as string}</p>
+                <p className="text-blue-200 text-sm break-words">{content.content as string}</p>
               </div>
             </div>
           </div>
@@ -452,10 +452,10 @@ const InstructionsPage: React.FC = () => {
         return (
           <div>
             {content.title && (
-              <h4 className="text-white font-medium mb-2">{content.title}</h4>
+              <h4 className="text-white font-medium mb-2 break-words">{content.title}</h4>
             )}
-            <div className="bg-gray-900/50 border border-gray-700 rounded-lg p-4">
-              <pre className="text-green-300 text-sm font-mono whitespace-pre-wrap">
+            <div className="bg-gray-900/50 border border-gray-700 rounded-lg p-4 overflow-x-auto">
+              <pre className="text-green-300 text-sm font-mono whitespace-pre-wrap break-words">
                 {content.content as string}
               </pre>
             </div>
@@ -468,50 +468,50 @@ const InstructionsPage: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 overflow-x-hidden">
       {/* Header */}
-      <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+      <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-white/20">
         <div className="flex items-center gap-3 mb-4">
-          <BookOpen className="w-6 h-6 text-white" />
-          <h1 className="text-2xl font-bold text-white">Упутства за Коришћење</h1>
+          <BookOpen className="w-5 sm:w-6 h-5 sm:h-6 text-white flex-shrink-0" />
+          <h1 className="text-xl sm:text-2xl font-bold text-white break-words">Упутства за Коришћење</h1>
         </div>
-        <p className="text-white/70">
+        <p className="text-white/70 text-sm sm:text-base break-words">
           Детаљан водич за коришћење система за управљање баштом. 
           Кликните на секције испод да бисте проширили садржај.
         </p>
       </div>
 
       {/* Quick Links */}
-      <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
-        <h2 className="text-white font-semibold mb-4">Брзе Везе</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-white/20">
+        <h2 className="text-white font-semibold mb-4 text-sm sm:text-base">Брзе Везе</h2>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
           <button
             onClick={() => toggleSection('getting-started')}
-            className="flex items-center gap-2 bg-green-500/20 hover:bg-green-500/30 text-green-300 px-3 py-2 rounded-lg transition-colors text-sm"
+            className="flex items-center gap-2 bg-green-500/20 hover:bg-green-500/30 text-green-300 px-2 sm:px-3 py-2 rounded-lg transition-colors text-xs sm:text-sm"
           >
-            <Play className="w-4 h-4" />
-            Почетак
+            <Play className="w-3 sm:w-4 h-3 sm:h-4 flex-shrink-0" />
+            <span className="break-words">Почетак</span>
           </button>
           <button
             onClick={() => toggleSection('wifi-setup')}
-            className="flex items-center gap-2 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 px-3 py-2 rounded-lg transition-colors text-sm"
+            className="flex items-center gap-2 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 px-2 sm:px-3 py-2 rounded-lg transition-colors text-xs sm:text-sm"
           >
-            <Wifi className="w-4 h-4" />
-            WiFi
+            <Wifi className="w-3 sm:w-4 h-3 sm:h-4 flex-shrink-0" />
+            <span className="break-words">WiFi</span>
           </button>
           <button
             onClick={() => toggleSection('troubleshooting')}
-            className="flex items-center gap-2 bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-300 px-3 py-2 rounded-lg transition-colors text-sm"
+            className="flex items-center gap-2 bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-300 px-2 sm:px-3 py-2 rounded-lg transition-colors text-xs sm:text-sm"
           >
-            <Wrench className="w-4 h-4" />
-            Проблеми
+            <Wrench className="w-3 sm:w-4 h-3 sm:h-4 flex-shrink-0" />
+            <span className="break-words">Проблеми</span>
           </button>
           <button
             onClick={() => toggleSection('safety')}
-            className="flex items-center gap-2 bg-red-500/20 hover:bg-red-500/30 text-red-300 px-3 py-2 rounded-lg transition-colors text-sm"
+            className="flex items-center gap-2 bg-red-500/20 hover:bg-red-500/30 text-red-300 px-2 sm:px-3 py-2 rounded-lg transition-colors text-xs sm:text-sm col-span-2 lg:col-span-1"
           >
-            <Shield className="w-4 h-4" />
-            Безбедност
+            <Shield className="w-3 sm:w-4 h-3 sm:h-4 flex-shrink-0" />
+            <span className="break-words">Безбедност</span>
           </button>
         </div>
       </div>
@@ -525,21 +525,21 @@ const InstructionsPage: React.FC = () => {
           >
             <button
               onClick={() => toggleSection(section.id)}
-              className="w-full flex items-center justify-between p-6 hover:bg-white/5 transition-colors"
+              className="w-full flex items-center justify-between p-4 sm:p-6 hover:bg-white/5 transition-colors"
             >
-              <div className="flex items-center gap-3">
-                <div className="text-white">{section.icon}</div>
-                <h2 className="text-white font-semibold text-left">{section.title}</h2>
+              <div className="flex items-center gap-3 min-w-0 flex-1">
+                <div className="text-white flex-shrink-0">{section.icon}</div>
+                <h2 className="text-white font-semibold text-left text-sm sm:text-base break-words">{section.title}</h2>
               </div>
               {expandedSections.includes(section.id) ? (
-                <ChevronDown className="w-5 h-5 text-white/60" />
+                <ChevronDown className="w-5 h-5 text-white/60 flex-shrink-0" />
               ) : (
-                <ChevronRight className="w-5 h-5 text-white/60" />
+                <ChevronRight className="w-5 h-5 text-white/60 flex-shrink-0" />
               )}
             </button>
             
             {expandedSections.includes(section.id) && (
-              <div className="px-6 pb-6 space-y-4 border-t border-white/10">
+              <div className="px-4 sm:px-6 pb-4 sm:pb-6 space-y-4 border-t border-white/10">
                 {section.content.map((content, index) => (
                   <div key={index}>
                     {renderContent(content)}
@@ -552,52 +552,52 @@ const InstructionsPage: React.FC = () => {
       </div>
 
       {/* Support Section */}
-      <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+      <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-white/20">
         <div className="flex items-center gap-2 mb-4">
-          <HelpCircle className="w-5 h-5 text-white" />
-          <h2 className="text-white font-semibold">Додатна Помоћ</h2>
+          <HelpCircle className="w-5 h-5 text-white flex-shrink-0" />
+          <h2 className="text-white font-semibold text-sm sm:text-base">Додатна Помоћ</h2>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           <div className="bg-white/5 border border-white/10 rounded-lg p-4">
             <div className="flex items-center gap-2 mb-2">
-              <FileText className="w-4 h-4 text-blue-400" />
-              <span className="text-white font-medium">Документација</span>
+              <FileText className="w-4 h-4 text-blue-400 flex-shrink-0" />
+              <span className="text-white font-medium text-sm break-words">Документација</span>
             </div>
-            <p className="text-white/60 text-sm mb-3">
+            <p className="text-white/60 text-xs sm:text-sm mb-3 break-words">
               Детаљна техничка документација
             </p>
-            <button className="flex items-center gap-1 text-blue-400 hover:text-blue-300 text-sm">
-              <ExternalLink className="w-3 h-3" />
-              Отвори
+            <button className="flex items-center gap-1 text-blue-400 hover:text-blue-300 text-xs sm:text-sm">
+              <ExternalLink className="w-3 h-3 flex-shrink-0" />
+              <span>Отвори</span>
             </button>
           </div>
           
           <div className="bg-white/5 border border-white/10 rounded-lg p-4">
             <div className="flex items-center gap-2 mb-2">
-              <Video className="w-4 h-4 text-green-400" />
-              <span className="text-white font-medium">Видео Туторијали</span>
+              <Video className="w-4 h-4 text-green-400 flex-shrink-0" />
+              <span className="text-white font-medium text-sm break-words">Видео Туторијали</span>
             </div>
-            <p className="text-white/60 text-sm mb-3">
+            <p className="text-white/60 text-xs sm:text-sm mb-3 break-words">
               Корак по корак видео упутства
             </p>
-            <button className="flex items-center gap-1 text-green-400 hover:text-green-300 text-sm">
-              <ExternalLink className="w-3 h-3" />
-              Погледај
+            <button className="flex items-center gap-1 text-green-400 hover:text-green-300 text-xs sm:text-sm">
+              <ExternalLink className="w-3 h-3 flex-shrink-0" />
+              <span>Погледај</span>
             </button>
           </div>
           
-          <div className="bg-white/5 border border-white/10 rounded-lg p-4">
+          <div className="bg-white/5 border border-white/10 rounded-lg p-4 lg:col-span-1 col-span-1">
             <div className="flex items-center gap-2 mb-2">
-              <Globe className="w-4 h-4 text-purple-400" />
-              <span className="text-white font-medium">Заједница</span>
+              <Globe className="w-4 h-4 text-purple-400 flex-shrink-0" />
+              <span className="text-white font-medium text-sm break-words">Заједница</span>
             </div>
-            <p className="text-white/60 text-sm mb-3">
+            <p className="text-white/60 text-xs sm:text-sm mb-3 break-words">
               Форум корисника и подршка
             </p>
-            <button className="flex items-center gap-1 text-purple-400 hover:text-purple-300 text-sm">
-              <ExternalLink className="w-3 h-3" />
-              Приступи
+            <button className="flex items-center gap-1 text-purple-400 hover:text-purple-300 text-xs sm:text-sm">
+              <ExternalLink className="w-3 h-3 flex-shrink-0" />
+              <span>Приступи</span>
             </button>
           </div>
         </div>
