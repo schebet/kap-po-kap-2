@@ -3,7 +3,6 @@ import {
   Share2,
   Facebook,
   Twitter,
-  Linkedin,
   Copy,
   CheckCircle,
   MessageCircle,
@@ -45,18 +44,6 @@ const SocialShareButton: React.FC<SocialShareButtonProps> = ({
       icon: <Twitter className="w-5 h-5" />,
       color: 'bg-sky-500 hover:bg-sky-600',
       shareUrl: `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareData.url)}&text=${encodeURIComponent(shareData.title + ' - ' + shareData.description)}`
-    },
-    {
-      name: 'LinkedIn',
-      icon: <Linkedin className="w-5 h-5" />,
-      color: 'bg-blue-700 hover:bg-blue-800',
-      shareUrl: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareData.url)}`
-    },
-    {
-      name: 'WhatsApp',
-      icon: <MessageCircle className="w-5 h-5" />,
-      color: 'bg-green-600 hover:bg-green-700',
-      shareUrl: `https://wa.me/?text=${encodeURIComponent(shareData.title + ' - ' + shareData.description + ' ' + shareData.url)}`
     },
     {
       name: 'Email',
